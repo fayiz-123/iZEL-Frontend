@@ -53,7 +53,9 @@ const Navbar = () => {
               {" "}
               <FaInstagram className="text-red-500 text-lg cursor-pointer" />
             </a>
+            <a href="https://wa.me/+919400647077?text=Hello" target="_blank"  rel="noopener noreferrer">
             <FaWhatsapp className="text-green-500 text-lg cursor-pointer" />
+            </a>
           </div>
 
           {/* 🔹 Right - Mobile Icons */}
@@ -67,7 +69,9 @@ const Navbar = () => {
               {" "}
               <FaInstagram className="text-red-500 text-lg cursor-pointer" />{" "}
             </a>
+            <a href="https://wa.me/+919400647077?text=Hello" target="_blank"  rel="noopener noreferrer">
             <FaWhatsapp className="text-green-500 text-lg cursor-pointer" />
+            </a>
             <button onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? (
                 <FaTimes className="text-black text-lg" />

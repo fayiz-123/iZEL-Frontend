@@ -41,11 +41,11 @@ const WhatWeOffer = () => {
       </div>
 
       {/* Learn More Button */}
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <button className="bg-red-500 hover:bg-red-600 text-white text-sm sm:text-base px-5 py-2 rounded-lg shadow-md">
           Learn More →
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };
