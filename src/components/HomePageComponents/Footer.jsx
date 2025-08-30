@@ -1,0 +1,39 @@
+import React from "react";
+import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+
+const Footer = () => {
+  return (
+    <footer style={{ backgroundColor: "#000", color: "#fff", padding: "2rem 0" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+        
+        {/* Support Section */}
+        <div style={{ textAlign: "center" }}>
+          <h3>Support</h3>
+          <p>Perumattom, Muvattupuzha</p>
+          <p>hafismuhmmedpr@gmail.com</p>
+          <p>+91 9072744021</p>
+        </div>
+
+        {/* Social Media Icons */}
+        <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+          <a href="https://www.instagram.com/izel_design_studio?igsh=eWF0cW9qa3A0MHpm" target="_blank" rel="noopener noreferrer">
+            <FaInstagram size={24} color="#E1306C" />
+          </a>
+          <a href="https://www.facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <FaFacebookF size={24} color="#4267B2" />
+          </a>
+          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={24} color="#25D366" />
+          </a>
+        </div>
+
+        {/* Copyright */}
+        <p style={{ marginTop: "1rem", fontSize: "0.9rem", color: "#aaa" }}>
+          © Copyright 2025. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
