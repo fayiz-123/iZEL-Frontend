@@ -1,11 +1,11 @@
 import axios from "axios";
 
 //fetchData
-export const fetchData = async(endpoint,data=null,useCredentials=false) =>{
+export const fetchData = async(endpoint,methoddata=null,useCredentials=false) =>{
     try {
         const response = await axios({
             url:endpoint,
-            method:'GET',
+            method,
             data,
             withCredentials:useCredentials
         });

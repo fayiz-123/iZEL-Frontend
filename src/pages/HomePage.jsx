@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../components/HomePageComponents/Navbar'
+import Navbar from '../components/Navbar'
 import HeroSection from '../components/HomePageComponents/HeroSection'
 import WhatWeOffer from '../components/HomePageComponents/WhatWeOffer'
 import GalleryPreview from '../components/HomePageComponents/GalleryPreview'
 import AboutUsPriview from '../components/HomePageComponents/AboutUsPriview'
-import Footer from '../components/HomePageComponents/Footer'
+import Footer from '../components/Footer'
 
 function HomePage() {
   return (

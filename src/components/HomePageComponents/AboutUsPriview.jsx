@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function AboutUsPriview() {
+    const navigate = useNavigate();
     return (
         <section className="py-12 px-6 md:px-16 bg-white">
             <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-yellow-900 italic mb-10">
@@ -31,7 +33,8 @@ function AboutUsPriview() {
                         that speak to the soul.
                     </p>
                     <div className="mt-4">
-                        <button className="bg-red-500 hover:bg-red-600 text-white text-sm sm:text-base px-5 py-2 rounded-lg shadow-md">
+                        <button className="bg-red-500 hover:bg-red-600 text-white text-sm sm:text-base px-5 py-2 rounded-lg shadow-md"
+                        onClick={() => navigate("/about")}>
                             Read Our Story →
                         </button>
                     </div>

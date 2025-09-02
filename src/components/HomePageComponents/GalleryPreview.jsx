@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../services/productService";
 
 const GalleryPreview = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -23,11 +23,7 @@ const GalleryPreview = () => {
     loadProducts();
   }, []);
 
-  if (loading)
-    return (
-      <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-    );
-
+ 
   return (
     <section className="py-12 bg-white text-center">
       {/* Section Heading */}
@@ -41,6 +37,9 @@ const GalleryPreview = () => {
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 md:px-16">
         {products.map((product) => (
+          loading ? (
+             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          ) :
           <div
             key={product._id}
             className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group"
