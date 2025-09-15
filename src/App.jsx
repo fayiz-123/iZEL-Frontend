@@ -5,6 +5,8 @@ import { Route,Routes } from 'react-router-dom'
 import GalleryPage from './pages/GalleryPage'
 import AboutPage from './pages/AboutPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import LoginPage from './pages/LoginPage'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
@@ -12,9 +14,25 @@ function App() {
 
   return (
     <>
-    
+    <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+          success: {
+            style: { background: "green" },
+          },
+          error: {
+            style: { background: "red" },
+          },
+        }}
+      />
     <Routes>
       <Route path='/' element={<HomePage/>}/>
+      <Route path='/login' element={<LoginPage/>}/>
       <Route path='/gallery' element={<GalleryPage/>}/>
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/admin' element={<AdminDashboard/>}/>

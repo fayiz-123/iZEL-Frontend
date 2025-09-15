@@ -1,13 +1,14 @@
 import axios from "axios";
 
 //fetchData
-export const fetchData = async(endpoint,methoddata=null,useCredentials=false) =>{
+export const fetchData = async(endpoint,method,data=null,useCredentials=false) =>{
     try {
         const response = await axios({
             url:endpoint,
             method,
             data,
-            withCredentials:useCredentials
+            withCredentials:useCredentials,
+            validateStatus: () => true
         });
         return response.data;
     } catch (error) {

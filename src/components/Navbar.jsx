@@ -9,7 +9,7 @@ const Navbar = ({ children }) => {
     { text: "Home", path: "/" },
     { text: "Gallery", path: "/gallery" },
     { text: "About", path: "/about" },
-    { text: "Signup", path: "/signup" },
+    { text: "Signup", path: "/login" },
   ];
 
   return (
