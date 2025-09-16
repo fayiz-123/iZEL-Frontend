@@ -32,7 +32,10 @@ const HeroSection = () => {
           <p className="mt-1 text-gray-700 text-base sm:text-lg md:text-xl lg:text-2xl">
             DESIGN STUDIO
           </p>
-          <p className="mt-2 text-red-700 text-sm sm:text-base italic md:text-base lg:text-base">
+          <p
+            className="mt-2 text-red-700 italic 
+              text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+          >
             Your Vision Our Creation
           </p>
         </div>
