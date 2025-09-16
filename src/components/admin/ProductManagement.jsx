@@ -281,6 +281,7 @@ function ProductManagement() {
 
         <button
           onClick={handleSave}
+          disabled={addLoading}
           className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded md:col-span-3"
         >
           {addLoading
@@ -316,7 +317,7 @@ function ProductManagement() {
             ) : (
               products.map((p, i) => (
                 <tr key={i} className="text-center">
-                  <td className="border px-4 py-2">{i + 1}</td>
+                  <td className="border px-4 py-2">{(page - 1) * limit + (i + 1)}</td>
                   <td className="border px-4 py-2 max-w-[150px] break-words whitespace-normal">
                     {p.name}
                   </td>

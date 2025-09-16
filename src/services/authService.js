@@ -7,7 +7,17 @@ export const Login = async (formData)=> {
         const response = await fetchData(urlEndPoints.login,'POST',formData,true)
         return response;
     } catch (error) {
-        console.log('Errorin Login',error);
+        console.log('Error in Login',error);
+        throw error
+    }
+}
+
+export const Profile = async (data=null)=> {
+    try {
+        const response = await fetchData(urlEndPoints.profile,'GET',data,true)
+        return response;
+    } catch (error) {
+        console.log('Error Fetching User Profile',error);
         throw error
     }
 }

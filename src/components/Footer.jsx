@@ -48,13 +48,6 @@ const Footer = () => {
             <FaInstagram size={24} color="#E1306C" />
           </a>
           <a
-            href="https://www.facebook.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebookF size={24} color="#4267B2" />
-          </a>
-          <a
             href="https://wa.me/+919400647077?text=Hello"
             target="_blank"
             rel="noopener noreferrer"

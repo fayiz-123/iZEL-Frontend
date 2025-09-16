@@ -2,6 +2,7 @@ import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 function AboutPage() {
   window.scrollTo(0, 0);
@@ -9,9 +10,10 @@ function AboutPage() {
 
   return (
     <>
+        <Navbar title={'About Us'}/>
       <section className="min-h-screen bg-gray-50">
         {/* 🔹 Sticky Top Bar */}
-        <div className="sticky top-0 z-20 bg-white shadow-sm">
+        {/* <div className="sticky top-0 z-20 bg-white shadow-sm">
           <div className="flex items-center max-w-6xl mx-auto px-4 py-4">
             <button
               onClick={() => navigate("/")}
@@ -23,7 +25,7 @@ function AboutPage() {
               About Us
             </h2>
           </div>
-        </div>
+        </div> */}
 
         {/* 🔹 About Content */}
         <div className="max-w-6xl mx-auto px-6 py-12">

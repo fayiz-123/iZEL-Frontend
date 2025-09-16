@@ -3,8 +3,7 @@ import GalleryGrid from "../components/GalleryPageComponents/GalleryGrid";
 import ImageCarousel from "../components/GalleryPageComponents/ImageCarousels";
 import Footer from "../components/Footer";
 import { fetchProducts } from "../services/productService";
-import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function GalleryPage() {
   window.scrollTo(0, 0);
@@ -16,10 +15,7 @@ function GalleryPage() {
   const [showCarousel, setShowCarousel] = useState(false);
   const [currentProductImages, setCurrentProductImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const limit = 5;
-
-  const navigate = useNavigate();
+  const [limit, setLimit] = useState(5); // default mobile
 
   const handleImageClick = (productImages, idx) => {
     setCurrentProductImages(productImages);
@@ -40,38 +36,41 @@ function GalleryPage() {
     }
   };
 
+  // 👇 detect screen size once + on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setLimit(8); // desktop
+      } else {
+        setLimit(5); // mobile
+      }
+    };
+
+    handleResize(); // run initially
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     loadProducts();
-  }, [page]);
+  }, [page, limit]);
 
   return (
     <>
+      <Navbar title={"Our Gallery"} />
       <section className="min-h-screen bg-gray-50">
-        {/* 🔹 Sticky Top Bar */}
-        <div className="sticky top-0 z-20 bg-white shadow-sm">
-          <div className="flex items-center max-w-6xl mx-auto px-4 py-4">
-            <button
-              onClick={() => navigate("/")}
-              className="p-2 rounded-full hover:bg-gray-200 transition"
-            >
-              <FaArrowLeft className="text-2xl text-gray-800" />
-            </button>
-            <h2 className="flex-1 text-center text-2xl md:text-3xl font-bold text-gray-800">
-              Our Gallery
-            </h2>
-          </div>
-        </div>
-
-        {/* 🔹 Gallery Content */}
         <div className="max-w-6xl mx-auto px-4 py-8">
           {loading ? (
             <p className="text-center text-gray-500">Loading...</p>
           ) : (
-            <GalleryGrid products={products} onImageClick={handleImageClick} />
+            <GalleryGrid
+              products={products}
+              onImageClick={handleImageClick}
+              whatsappNumber={919400647077}
+            />
           )}
         </div>
 
-        {/* 🔹 Fullscreen Carousel */}
         {showCarousel && (
           <ImageCarousel
             images={currentProductImages}
@@ -79,6 +78,7 @@ function GalleryPage() {
             onClose={() => setShowCarousel(false)}
           />
         )}
+
         <div className="flex justify-center mt-6 gap-4">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}

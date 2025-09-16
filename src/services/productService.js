@@ -13,7 +13,7 @@ export const fetchProducts = async (page = 1,limit = 5)=> {
 
 export const addProducts = async (formData)=> {
     try {
-        const response = await fetchData(urlEndPoints.getProducts,'POST',formData,true)
+        const response = await fetchData(urlEndPoints.addProduct,'POST',formData,true)
         return response;
     } catch (error) {
         console.log('Error Adding product:',error);
