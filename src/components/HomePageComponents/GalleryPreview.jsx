@@ -23,9 +23,14 @@ const GalleryPreview = () => {
     loadProducts();
   }, []);
 
-  // latest 3 products only
-  const latestProducts = [...products]
-    .slice(0, 2);
+  // get only latest 3 products
+  const latestProducts = [...products].slice(0, 3);
+
+  // Fill with fallback until we have exactly 3 items
+  const displayItems = [
+    ...latestProducts,
+    ...Array(3 - latestProducts.length).fill({ fallback: true }),
+  ];
 
   return (
     <section className="py-12 bg-white text-center">
@@ -41,29 +46,25 @@ const GalleryPreview = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 md:px-16">
         {loading ? (
           <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-        ) : latestProducts.length > 0 ? (
-          latestProducts.map((product) => (
-            <div
-              key={product._id}
-              className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group"
-            >
-              <img
-                src={product?.images?.[0]?.url || "/images/image1.jpeg"}
-                alt={product.name}
-                className="w-full h-full object-cover rounded-lg transition-transform duration-300 
-                  group-hover:scale-105 group-active:scale-105"
-              />
-            </div>
-          ))
         ) : (
-          // fallback when no products
-          <div className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md">
-            <img
-              src="/images/image1.jpeg"
-              alt="Fallback"
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </div>
+          <>
+            {[
+              ...latestProducts,
+              ...Array(3 - latestProducts.length).fill(null),
+            ].map((product, index) => (
+              <div
+                key={product?._id || `fallback-${index}`}
+                className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group"
+              >
+                <img
+                  src={product?.images?.[0]?.url || "/images/fallback.jpeg"}
+                  alt={product?.name || "Fallback"}
+                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 
+                group-hover:scale-105 group-active:scale-105"
+                />
+              </div>
+            ))}
+          </>
         )}
       </div>
 
