@@ -1,9 +1,9 @@
 import { urlEndPoints } from "../api/apiConfig";
 import { fetchData } from "../api/apiService";
 
-export const fetchProducts = async ()=> {
+export const fetchProducts = async (page = 1,limit = 5)=> {
     try {
-        const response = await fetchData(urlEndPoints.getProducts,'GET')
+        const response = await fetchData(urlEndPoints.getProducts(page,limit),'GET')
         return response;
     } catch (error) {
         console.log('Error Fetching products:',error);

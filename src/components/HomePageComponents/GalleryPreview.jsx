@@ -11,7 +11,7 @@ const GalleryPreview = () => {
     setLoading(true);
     try {
       const response = await fetchProducts();
-      setProducts(response.data);
+      setProducts(response.data?.products);
     } catch (error) {
       console.log("Failed to fetch products");
     } finally {

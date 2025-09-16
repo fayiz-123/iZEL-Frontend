@@ -7,13 +7,17 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function GalleryPage() {
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [showCarousel, setShowCarousel] = useState(false);
   const [currentProductImages, setCurrentProductImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const limit = 5;
 
   const navigate = useNavigate();
 
@@ -26,8 +30,9 @@ function GalleryPage() {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetchProducts();
-      setProducts(response.data || []);
+      const response = await fetchProducts(page, limit);
+      setProducts(response.data?.products || []);
+      setTotalPages(response?.data?.pages);
     } catch (error) {
       console.error("Failed to fetch products", error);
     } finally {
@@ -37,45 +42,67 @@ function GalleryPage() {
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [page]);
 
   return (
     <>
-    <section className="min-h-screen bg-gray-50">
-      {/* 🔹 Sticky Top Bar */}
-      <div className="sticky top-0 z-20 bg-white shadow-sm">
-        <div className="flex items-center max-w-6xl mx-auto px-4 py-4">
-          <button
-            onClick={() => navigate('/')}
-            className="p-2 rounded-full hover:bg-gray-200 transition"
-          >
-            <FaArrowLeft className="text-2xl text-gray-800" />
-          </button>
-          <h2 className="flex-1 text-center text-2xl md:text-3xl font-bold text-gray-800">
-            Our Gallery
-          </h2>
+      <section className="min-h-screen bg-gray-50">
+        {/* 🔹 Sticky Top Bar */}
+        <div className="sticky top-0 z-20 bg-white shadow-sm">
+          <div className="flex items-center max-w-6xl mx-auto px-4 py-4">
+            <button
+              onClick={() => navigate("/")}
+              className="p-2 rounded-full hover:bg-gray-200 transition"
+            >
+              <FaArrowLeft className="text-2xl text-gray-800" />
+            </button>
+            <h2 className="flex-1 text-center text-2xl md:text-3xl font-bold text-gray-800">
+              Our Gallery
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* 🔹 Gallery Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {loading ? (
-          <p className="text-center text-gray-500">Loading...</p>
-        ) : (
-          <GalleryGrid products={products} onImageClick={handleImageClick} />
+        {/* 🔹 Gallery Content */}
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          {loading ? (
+            <p className="text-center text-gray-500">Loading...</p>
+          ) : (
+            <GalleryGrid products={products} onImageClick={handleImageClick} />
+          )}
+        </div>
+
+        {/* 🔹 Fullscreen Carousel */}
+        {showCarousel && (
+          <ImageCarousel
+            images={currentProductImages}
+            currentIndex={currentIndex}
+            onClose={() => setShowCarousel(false)}
+          />
         )}
-      </div>
+        <div className="flex justify-center mt-6 gap-4">
+          <button
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            disabled={page === 1}
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+          >
+            Previous
+          </button>
 
-      {/* 🔹 Fullscreen Carousel */}
-      {showCarousel && (
-        <ImageCarousel
-          images={currentProductImages}
-          currentIndex={currentIndex}
-          onClose={() => setShowCarousel(false)}
-        />
-      )}
-    </section>
-    <Footer/>
+          <span className="px-4 py-2 font-medium">
+            Page {page} of {totalPages}
+          </span>
+
+          <button
+            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={page === totalPages}
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      </section>
+
+      <Footer />
     </>
   );
 }

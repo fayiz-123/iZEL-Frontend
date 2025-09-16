@@ -8,6 +8,6 @@ export const urlEndPoints = {
 
 
     //products
-    getProducts: `${baseApiUrl}/product`,
+    getProducts: (page,limit)=> `${baseApiUrl}/product?page=${page}&limit=${limit}`,
     updateAndDelete:(id)=> `${baseApiUrl}/product/${id}`
 }
