@@ -88,6 +88,16 @@ const handleSubmit = async (e) => {
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-500">
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/signup")}
+            className="text-red-500 cursor-pointer"
+          >
+            Signup
+          </span>
+        </p>
+
+        <p className="mt-2 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} iZEL Studio
         </p>
       </div>

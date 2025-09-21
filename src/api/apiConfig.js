@@ -6,6 +6,8 @@ export const urlEndPoints = {
     login:`${baseApiUrl}/user/login`,
     profile: `${baseApiUrl}/user/me`,
     logout:`${baseApiUrl}/user/logout`,
+    signup: `${baseApiUrl}/user/signup`,
+    verifyOtp : `${baseApiUrl}/user/verify`,
 
 
     //products
