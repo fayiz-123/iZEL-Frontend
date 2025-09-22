@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import HomePage from './pages/HomePage'
 import { Route,Routes } from 'react-router-dom'
@@ -8,6 +7,7 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import LoginPage from './pages/LoginPage'
 import { Toaster } from 'react-hot-toast'
 import Registration from './pages/RegistrationPage'
+import ToastFixer from './utils/ToastFixer'
 
 function App() {
 
@@ -30,6 +30,8 @@ function App() {
           },
         }}
       />
+
+      <ToastFixer/>
 
     <Routes>
       <Route path='/' element={<HomePage/>}/>
