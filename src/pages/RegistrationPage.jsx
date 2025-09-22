@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Signup, verifyOtp } from "../services/authService";
 
-function SignUpPage() {
+function Registration() {
   const [step, setStep] = useState(1); // Step 1: Details, Step 2: OTP
   const [formData, setFormData] = useState({
     name: "",
@@ -217,4 +217,4 @@ function SignUpPage() {
   );
 }
 
-export default SignUpPage;
+export default Registration;
