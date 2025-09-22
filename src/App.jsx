@@ -7,7 +7,7 @@ import AboutPage from './pages/AboutPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import LoginPage from './pages/LoginPage'
 import { Toaster } from 'react-hot-toast'
-import SignupPage from './pages/SignUpPage'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
 
@@ -30,11 +30,11 @@ function App() {
           },
         }}
       />
-      
+
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
-      <Route path='/signup' element={<SignupPage/>}/>
+      <Route path='/signup' element={<SignUpPage/>}/>
       <Route path='/gallery' element={<GalleryPage/>}/>
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/admin' element={<AdminDashboard/>}/>
