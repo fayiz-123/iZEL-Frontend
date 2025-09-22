@@ -6,7 +6,7 @@ function AboutUsPriview() {
   return (
     <section className="py-12 px-6 md:px-16 bg-white">
       <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-yellow-900 italic mb-10">
-        A Celebration of Heritage Through Every Thread is On 
+        A Celebration of Heritage Through Every Thread is Here
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
