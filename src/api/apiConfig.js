@@ -13,5 +13,10 @@ export const urlEndPoints = {
     //products
     getProducts: (page,limit)=> `${baseApiUrl}/product?page=${page}&limit=${limit}`,
     updateAndDelete:(id)=> `${baseApiUrl}/product/${id}`,
-    addProduct : `${baseApiUrl}/product`
+    addProduct : `${baseApiUrl}/product`,
+
+
+    //admin
+    allUsers: (page,limit) => `${baseApiUrl}/admin/users?page=${page}&limit=${limit}`,
+    roleChange: `${baseApiUrl}/admin/role`
 }

@@ -379,6 +379,7 @@ function ProductManagement() {
             )}
           </tbody>
         </table>
+       {totalPages > 1 && (
         <div className="flex justify-center mt-6 gap-4">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -399,7 +400,7 @@ function ProductManagement() {
           >
             Next
           </button>
-        </div>
+        </div>)}
       </div>
     </div>
   );
