@@ -19,7 +19,7 @@ const Navbar = ({ title }) => {
 
   const navLinks = [
     { text: "Home", path: "/" },
-    { text: "Gallery", path: "/gallery" },
+    { text: "Store", path: "/store" },
     { text: "About", path: "/about" },
   ];
 

@@ -79,7 +79,7 @@ const GalleryPreview = () => {
       <div className="mt-8">
         <button
           className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md shadow-md transition"
-          onClick={() => navigate("/gallery")}
+          onClick={() => navigate("/store")}
         >
           Explore More
         </button>

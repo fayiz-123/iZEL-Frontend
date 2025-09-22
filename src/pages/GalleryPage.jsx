@@ -59,7 +59,7 @@ function GalleryPage() {
 
   return (
     <>
-      <Navbar title={"Our Gallery"} />
+      <Navbar title={"Our Store"} />
 
       <main className="min-h-[calc(100vh-318px)] bg-gray-50 flex flex-col justify-start">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 flex flex-col">
