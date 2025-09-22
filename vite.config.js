@@ -11,8 +11,8 @@ export default defineConfig({
     registerType: 'autoUpdate', // automatically updates service worker
     includeAssets: ['/icons/favicon.ico', 'robots.txt', '/icons/apple-touch-icon.png'],
     manifest: {
-      name: 'izel Design Stdio',
-      short_name: 'iZEl Designs',
+      name: 'Izel Design Stdio',
+      short_name: 'Izel Designs',
       description: 'Your Vision Our Creation',
       theme_color: '#000000',       // black theme color
       background_color: '#ffffff',  // white background
