@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Login, Logout } from "../services/authService";
+import { Login } from "../services/authService";
 import toast from "react-hot-toast";
 
 function LoginPage() {
@@ -9,42 +9,41 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const response = await Login({ email, password });
+    try {
+      const response = await Login({ email, password });
 
-    if (response.success) {
-      const { role } = response.data;
+      if (response.success) {
+        const { role } = response.data;
 
-      // Navigate based on role
-      if (role === "admin") {
-                toast.success("Login Successfull")
+        toast.success("Login Successful");
 
-        navigate("/admin");
+        if (role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       } else {
-        toast.success("Login Successfull")
-        navigate("/");
+        toast.dismiss();
+        toast.error(response?.message || "Invalid credentials");
       }
-    } else {
-      // Handle invalid credentials gracefully
-      toast.dismiss()
-      toast.error("Invalid credentials" || response?.message);
+    } catch (error) {
+      console.error("Unexpected login error:", error);
+      toast.dismiss();
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    // This only runs on unexpected/unhandled errors
-    console.error("Unexpected login error:", error);
-    toast.dismiss()
-    toast.error("Something went wrong. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
-
-
+  const continueAsGuest = () => {
+    // Optional: store a guest flag
+    localStorage.setItem("guest", "true");
+    navigate("/"); // redirect to homepage or main route
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -86,6 +85,16 @@ const handleSubmit = async (e) => {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
+
+        {/* Continue as Guest */}
+        <div className="mt-4 text-center">
+          <button
+            onClick={continueAsGuest}
+            className="text-gray-600 hover:text-gray-800 underline text-sm"
+          >
+            Continue as Guest
+          </button>
+        </div>
 
         <p className="mt-4 text-center text-sm text-gray-500">
           Don't have an account?{" "}
