@@ -1,5 +1,5 @@
 import React from "react";
-import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -21,10 +21,10 @@ const Footer = () => {
 
           <p>
             <a
-              href="mailto:fayizmohd211@gmail.com"
+              href="mailto:izeldesignerstudio@gmail.com"
               style={{ color: "#fff", textDecoration: "underline" }}
             >
-              fayizmohd211@gmail.com
+              izeldesignerstudio@gmail.com
             </a>
           </p>
 

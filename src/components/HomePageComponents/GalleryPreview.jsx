@@ -7,6 +7,12 @@ const GalleryPreview = () => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
+  const fallbackImages = [
+    "/images/image3.png",
+    "/images/image2.jpeg",
+    "/images/image1.jpeg",
+  ];
+
   const loadProducts = async () => {
     setLoading(true);
     try {
@@ -45,26 +51,27 @@ const GalleryPreview = () => {
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 md:px-16">
         {loading ? (
-          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <div className="flex justify-center items-center col-span-full min-h-[200px]">
+            <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
         ) : (
-          <>
-            {[
-              ...latestProducts,
-              ...Array(3 - latestProducts.length).fill(null),
-            ].map((product, index) => (
-              <div
-                key={product?._id || `fallback-${index}`}
-                className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group"
-              >
-                <img
-                  src={product?.images?.[0]?.url || "/images/fallback.jpeg"}
-                  alt={product?.name || "Fallback"}
-                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 
-                group-hover:scale-105 group-active:scale-105"
-                />
-              </div>
-            ))}
-          </>
+          displayItems.map((product, index) => (
+            <div
+              key={product?._id || `fallback-${index}`}
+              className="w-full aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md group"
+            >
+              <img
+                src={
+                  product?.images?.[0]?.url ||
+                  fallbackImages[index] ||
+                  fallbackImages[0]
+                }
+                alt={product?.name || `Fallback ${index + 1}`}
+                className="w-full h-full object-cover rounded-lg transition-transform duration-300 
+          group-hover:scale-105 group-active:scale-105"
+              />
+            </div>
+          ))
         )}
       </div>
 
