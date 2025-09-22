@@ -9,7 +9,6 @@ import LoginPage from './pages/LoginPage'
 import { Toaster } from 'react-hot-toast'
 import SignupPage from './pages/SignUpPage'
 
-
 function App() {
 
 
