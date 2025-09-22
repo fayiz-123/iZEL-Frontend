@@ -39,6 +39,22 @@ export default defineConfig({
         },
       ],
     },
+    workbox:{
+      runtimeCaching: [
+          {
+            // cache all images (local + remote)
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images-cache',
+              expiration: {
+                maxEntries: 100, // store up to 100 images
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+              },
+            },
+          },
+        ],
+    }
   }),
   ],
 
