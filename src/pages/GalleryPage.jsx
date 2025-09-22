@@ -60,10 +60,9 @@ function GalleryPage() {
   return (
     <>
       <Navbar title={"Our Gallery"} />
-      
+
       <main className="min-h-[calc(100vh-318px)] bg-gray-50 flex flex-col justify-start">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 flex flex-col">
-          
           {loading ? (
             <div className="flex items-center justify-center flex-1">
               <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
@@ -81,27 +80,31 @@ function GalleryPage() {
               />
 
               {/* Pagination */}
-              <div className="flex flex-col sm:flex-row justify-center items-center mt-6 gap-4">
-                <button
-                  onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                  disabled={page === 1}
-                  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 w-full sm:w-auto"
-                >
-                  Previous
-                </button>
+              {totalPages > 1 && (
+                <div className="flex flex-col sm:flex-row justify-center items-center mt-6 gap-4">
+                  <button
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={page === 1}
+                    className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 w-full sm:w-auto"
+                  >
+                    Previous
+                  </button>
 
-                <span className="px-4 py-2 font-medium text-center">
-                  Page {page} of {totalPages}
-                </span>
+                  <span className="px-4 py-2 font-medium text-center">
+                    Page {page} of {totalPages}
+                  </span>
 
-                <button
-                  onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-                  disabled={page === totalPages}
-                  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 w-full sm:w-auto"
-                >
-                  Next
-                </button>
-              </div>
+                  <button
+                    onClick={() =>
+                      setPage((prev) => Math.min(prev + 1, totalPages))
+                    }
+                    disabled={page === totalPages}
+                    className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 w-full sm:w-auto"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>

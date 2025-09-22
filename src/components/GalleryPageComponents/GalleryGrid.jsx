@@ -39,7 +39,7 @@ function GalleryGrid({ products, onImageClick, whatsappNumber }) {
               rel="noopener noreferrer"
               className="mt-3 inline-block w-full text-center bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition"
             >
-              Ask About Product
+              Enquire
             </a>
           </div>
         </div>
