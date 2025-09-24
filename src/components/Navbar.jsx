@@ -164,7 +164,7 @@ const Navbar = ({ title }) => {
               </button>
 
               {/* Profile Dropdown (Mobile) */}
-              { user?.name && user.role === 'user'  && (
+              { user?.name  && (
                 <div className="relative" ref={mobileProfileRef}>
                   <div
                     onClick={() => setProfileMenuOpen(!profileMenuOpen)}
