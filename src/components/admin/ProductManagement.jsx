@@ -8,6 +8,7 @@ import {
 import toast from "react-hot-toast";
 import { confirmToast } from "../../utils/ConfirmToast";
 import { FiDownload } from "react-icons/fi";
+import { sendNotification } from "../../services/subscriptionService";
 
 function ProductManagement() {
   const [loading, setLoading] = useState(false);
@@ -88,9 +89,15 @@ function ProductManagement() {
         const response = await addProducts(formData);
         if (response.success) {
           await loadProducts();
+          await sendNotification({
+            title: "🆕 New Product Added!",
+           body: `${newProduct.name} has just arrived at Izel Design Studio. Explore it now!`,
+            icon: "/icons/apple-touch-icon.png",
+            tag: "product-update",
+            url: "/store",
+          });
         }
       }
-
       setNewProduct({ name: "", description: "", images: [] });
       setExistingImages([]);
     } catch (error) {
@@ -297,7 +304,6 @@ function ProductManagement() {
       {/* Product List */}
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border text-sm sm:text-base table-auto">
-
           <thead className="bg-gray-200">
             <tr>
               <th className="border px-4 py-2">ID</th>
@@ -317,7 +323,9 @@ function ProductManagement() {
             ) : (
               products.map((p, i) => (
                 <tr key={i} className="text-center">
-                  <td className="border px-4 py-2">{(page - 1) * limit + (i + 1)}</td>
+                  <td className="border px-4 py-2">
+                    {(page - 1) * limit + (i + 1)}
+                  </td>
                   <td className="border px-4 py-2 max-w-[150px] break-words whitespace-normal">
                     {p.name}
                   </td>
@@ -379,28 +387,29 @@ function ProductManagement() {
             )}
           </tbody>
         </table>
-       {totalPages > 1 && (
-        <div className="flex justify-center mt-6 gap-4">
-          <button
-            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            disabled={page === 1}
-            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-          >
-            Previous
-          </button>
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-6 gap-4">
+            <button
+              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+              disabled={page === 1}
+              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
 
-          <span className="px-4 py-2 font-medium">
-            Page {page} of {totalPages}
-          </span>
+            <span className="px-4 py-2 font-medium">
+              Page {page} of {totalPages}
+            </span>
 
-          <button
-            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={page === totalPages}
-            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>)}
+            <button
+              onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={page === totalPages}
+              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

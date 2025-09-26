@@ -32,7 +32,7 @@ function App() {
       />
 
       <ToastFixer/>
-
+  
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
