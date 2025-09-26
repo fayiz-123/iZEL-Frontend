@@ -1,4 +1,4 @@
-const baseApiUrl = import.meta.env.VITE_API_URL
+const baseApiUrl = import.meta.env.VITE_API_URL; 
 
 
 export const urlEndPoints = {
@@ -18,5 +18,10 @@ export const urlEndPoints = {
 
     //admin
     allUsers: (page,limit) => `${baseApiUrl}/admin/users?page=${page}&limit=${limit}`,
-    roleChange: `${baseApiUrl}/admin/role`
+    roleChange: `${baseApiUrl}/admin/role`,
+
+    //Notification&Subscription
+    createSubscription : `${baseApiUrl}/subscription/subscribe`,
+    sentNotification : `${baseApiUrl}/notification/sent-notification`
+
 }

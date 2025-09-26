@@ -5,7 +5,7 @@ export default function ToastFixer() {
   useEffect(() => {
     const interval = setInterval(() => {
       toast.dismiss(); // clear any stuck toasts every 10s
-    }, 10000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);
